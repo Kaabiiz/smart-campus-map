@@ -230,16 +230,6 @@ smart_campus_map/
 - [x] 📊 Real-time occupancy tracking
 - [x] 🎨 Material Design 3 UI
 
-### 🚧 Coming Soon (v2.0)
-
-- [ ] 🔐 User authentication & profiles
-- [ ] ⭐ Personal POI bookmarks
-- [ ] 🧭 Route navigation & pathfinding
-- [ ] 🔔 Push notifications for reservations
-- [ ] 📱 QR code check-in system
-- [ ] ♿ Accessibility features
-- [ ] 🌙 Dark mode support
-- [ ] 🌐 Backend API integration
 
 ### 🔮 Future Ideas (v3.0+)
 
