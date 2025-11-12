@@ -3,6 +3,9 @@ class Reservation {
   final String roomId;
   final String userId;
   final String userName;
+  final String userEmail;        // ✅ ADD THIS FIELD
+  final String roomName;         // ✅ ADD THIS FIELD
+  final String buildingName;     // ✅ ADD THIS FIELD
   final DateTime date;
   final String startTime;
   final String endTime;
@@ -15,6 +18,9 @@ class Reservation {
     required this.roomId,
     required this.userId,
     required this.userName,
+    required this.userEmail,      // ✅ ADD THIS
+    required this.roomName,       // ✅ ADD THIS
+    required this.buildingName,   // ✅ ADD THIS
     required this.date,
     required this.startTime,
     required this.endTime,
@@ -23,12 +29,56 @@ class Reservation {
     required this.createdAt,
   });
 
+  // ✅ ADD: Get time slot as TimeSlot object
+  TimeSlot get timeSlot {
+    return TimeSlot(
+      start: startTime,
+      end: endTime,
+      isAvailable: true,
+    );
+  }
+
+  // ✅ ADD: Helper method to get formatted date
+  String get formattedDate {
+    final months = [
+      'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+      'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+    ];
+    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  }
+
+  // ✅ ADD: Helper method to check if reservation is today
+  bool get isToday {
+    final now = DateTime.now();
+    return date.year == now.year && 
+           date.month == now.month && 
+           date.day == now.day;
+  }
+
+  // ✅ ADD: Helper method to check if reservation is tomorrow
+  bool get isTomorrow {
+    final tomorrow = DateTime.now().add(const Duration(days: 1));
+    return date.year == tomorrow.year && 
+           date.month == tomorrow.month && 
+           date.day == tomorrow.day;
+  }
+
+  // ✅ ADD: Get relative date string (Today, Tomorrow, or date)
+  String get relativeDateString {
+    if (isToday) return 'Aujourd\'hui';
+    if (isTomorrow) return 'Demain';
+    return formattedDate;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'roomId': roomId,
       'userId': userId,
       'userName': userName,
+      'userEmail': userEmail,        // ✅ ADD THIS
+      'roomName': roomName,          // ✅ ADD THIS
+      'buildingName': buildingName,  // ✅ ADD THIS
       'date': date.toIso8601String(),
       'startTime': startTime,
       'endTime': endTime,
@@ -44,6 +94,9 @@ class Reservation {
       roomId: json['roomId'],
       userId: json['userId'],
       userName: json['userName'],
+      userEmail: json['userEmail'] ?? '',        // ✅ ADD THIS
+      roomName: json['roomName'] ?? '',          // ✅ ADD THIS
+      buildingName: json['buildingName'] ?? '',  // ✅ ADD THIS
       date: DateTime.parse(json['date']),
       startTime: json['startTime'],
       endTime: json['endTime'],
@@ -78,4 +131,8 @@ class TimeSlot {
   });
 
   String get displayTime => '$start - $end';
+  
+  // ✅ ADD: toString for compatibility
+  @override
+  String toString() => '$start - $end';
 }

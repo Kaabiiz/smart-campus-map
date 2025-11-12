@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/room.dart';
 import '../models/reservation.dart';
 import '../services/reservation_service.dart';
+import '../services/email_service.dart';
 import '../utils/constants.dart';
 
 class RoomReservationScreen extends StatefulWidget {
@@ -15,7 +16,12 @@ class RoomReservationScreen extends StatefulWidget {
 
 class _RoomReservationScreenState extends State<RoomReservationScreen> {
   final ReservationService _reservationService = ReservationService();
+  final EmailService _emailService = EmailService();
   final TextEditingController _purposeController = TextEditingController();
+
+  final TextEditingController _nameController = TextEditingController(text: 'Ahmed Kaabi'); // ✅ ADD THIS
+  final TextEditingController _emailController = TextEditingController(text: 'ahmedkaabi0123@hotmail.com'); // ✅ ADD THIS
+
 
   DateTime _selectedDate = DateTime.now();
   TimeSlot? _selectedTimeSlot;
@@ -86,30 +92,60 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
     setState(() => _isLoading = true);
 
     try {
+      // ✅ FIXED: Now using the controllers
       final success = await _reservationService.reserveRoom(
         roomId: widget.room.id,
         date: _selectedDate,
         startTime: _selectedTimeSlot!.start,
         endTime: _selectedTimeSlot!.end,
-        userId: 'user_123', // TODO: Get from authentication
-        userName: 'Utilisateur Test',
+        userId: 'user_123',
+        userName: _nameController.text.trim(),                    // ✅ FIXED
+        userEmail: _emailController.text.trim(),                  // ✅ FIXED
+        roomName: widget.room.name,
+        buildingName: _getBuildingName(),                         // ✅ FIXED (use method)
         purpose: _purposeController.text.trim(),
       );
 
-      setState(() => _isLoading = false);
-
       if (success) {
-        _showSuccessDialog();
+        // Send confirmation email
+        final emailSent = await _emailService.sendReservationConfirmation(
+          userEmail: _emailController.text.trim(),                // ✅ FIXED
+          userName: _nameController.text.trim(),                  // ✅ FIXED
+          roomName: widget.room.name,
+          buildingName: _getBuildingName(),
+          date: _formatDate(_selectedDate),
+          timeSlot: _selectedTimeSlot!.displayTime,
+          purpose: _purposeController.text.trim(),
+          reservationId: DateTime.now().millisecondsSinceEpoch.toString(),
+        );
+
+        setState(() => _isLoading = false);
+        _showSuccessDialog(emailSent);
       } else {
+        setState(() => _isLoading = false);
         _showErrorSnackBar('Ce créneau est déjà réservé');
       }
     } catch (e) {
       setState(() => _isLoading = false);
-      _showErrorSnackBar('Erreur lors de la réservation');
+      _showErrorSnackBar('Erreur lors de la réservation: $e');        // ✅ FIXED: Show error
     }
   }
 
-  void _showSuccessDialog() {
+  String _getBuildingName() {
+    // Extract building name from room's buildingId
+    // This is a simple mapping - in production, you'd get this from MockData
+    final buildingMap = {
+      'building_1': 'Bloc A - Administration',
+      'building_2': 'Bloc B - Salles de cours',
+      'building_3': 'Bloc C - Laboratoires',
+      'building_4': 'Bibliothèque Centrale',
+      'building_5': 'Restaurant Universitaire',
+      'building_6': 'Complexe Sportif',
+    };
+    return buildingMap[widget.room.buildingId] ?? 'Campus';
+  }
+
+  void _showSuccessDialog(bool emailSent) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -126,27 +162,99 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
               child: const Icon(Icons.check, color: Colors.green, size: 32),
             ),
             const SizedBox(width: 12),
-            const Text('Réservation confirmée'),
+            const Expanded(
+              child: Text(
+                'Réservation confirmée',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
           ],
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Votre réservation a été effectuée avec succès !'),
+            const Text(
+              'Votre réservation a été effectuée avec succès !',
+              style: TextStyle(fontSize: 15),
+            ),
             const SizedBox(height: 16),
             _buildInfoRow(Icons.meeting_room, widget.room.name),
+            _buildInfoRow(Icons.location_on, _getBuildingName()),
             _buildInfoRow(Icons.calendar_today, _formatDate(_selectedDate)),
             _buildInfoRow(Icons.access_time, _selectedTimeSlot!.displayTime),
+            _buildInfoRow(Icons.description, _purposeController.text.trim()),
+            const SizedBox(height: 16),
+            // Email confirmation status
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: emailSent ? Colors.green.shade50 : Colors.orange.shade50,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: emailSent ? Colors.green.shade200 : Colors.orange.shade200,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    emailSent ? Icons.mark_email_read : Icons.email_outlined,
+                    size: 20,
+                    color: emailSent ? Colors.green.shade700 : Colors.orange.shade700,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      emailSent
+                          ? '📧 Email de confirmation envoyé à ahmedkaabi0123@hotmail.com'
+                          : '⚠️ Email non envoyé (mode démo)',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: emailSent ? Colors.green.shade700 : Colors.orange.shade700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (emailSent) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, size: 16, color: Colors.blue.shade700),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Vérifiez votre boîte de réception',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.blue.shade700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context); // Close dialog
-              Navigator.pop(context); // Go back to previous screen
+              Navigator.pop(context); // Return to previous screen
             },
-            child: const Text('OK'),
+            child: const Text(
+              'OK',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
@@ -157,13 +265,14 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon, size: 18, color: Colors.grey[600]),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(color: Colors.grey[800]),
+              style: TextStyle(color: Colors.grey[800], fontSize: 14),
             ),
           ),
         ],
@@ -183,6 +292,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
         ),
         backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
       ),
     );
   }
@@ -196,6 +306,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
         title: const Text('Réserver une salle'),
         backgroundColor: AppConstants.primaryColor,
         foregroundColor: Colors.white,
+        elevation: 0,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -249,11 +360,29 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Capacité: ${widget.room.capacity} personnes',
+                                widget.room.roomNumber,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color: Colors.grey[600],
                                 ),
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.people,
+                                    size: 16,
+                                    color: Colors.grey[600],
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    'Capacité: ${widget.room.capacity} personnes',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ],
                               ),
                               if (widget.room.currentOccupation != null)
                                 Padding(
@@ -384,7 +513,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
                           controller: _purposeController,
                           maxLines: 3,
                           decoration: InputDecoration(
-                            hintText: 'Ex: Réunion de projet, Cours particulier...',
+                            hintText: 'Ex: Réunion de projet, Cours particulier, Présentation...',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -394,6 +523,34 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
                                 color: AppConstants.primaryColor,
                                 width: 2,
                               ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // Email notification info
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.blue.shade200),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.email, size: 20, color: Colors.blue.shade700),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Un email de confirmation sera envoyé à ahmedkaabi0123@hotmail.com',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.blue.shade700,
                             ),
                           ),
                         ),
@@ -420,6 +577,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           disabledBackgroundColor: Colors.grey[300],
+                          elevation: 2,
                         ),
                         child: const Text(
                           'Confirmer la réservation',
@@ -460,7 +618,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
               'Réservé',
               style: TextStyle(
                 fontSize: 10,
-                color: isSelected ? Colors.white : Colors.red,
+                color: isSelected ? Colors.white70 : Colors.red,
               ),
             ),
         ],
@@ -478,6 +636,7 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
         color: isAvailable
             ? (isSelected ? AppConstants.primaryColor : Colors.grey[300]!)
             : Colors.grey[400]!,
+        width: isSelected ? 2 : 1,
       ),
     );
   }
@@ -509,6 +668,8 @@ class _RoomReservationScreenState extends State<RoomReservationScreen> {
   @override
   void dispose() {
     _purposeController.dispose();
+    _nameController.dispose();      // ✅ ADD THIS
+    _emailController.dispose();     // ✅ ADD THIS
     super.dispose();
   }
 }

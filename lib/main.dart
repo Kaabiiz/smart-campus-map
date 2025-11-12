@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';  // ✅ CHANGED: Import HomeScreen instead of MapScreen
 import 'screens/map_screen.dart';
 
 void main() {
@@ -17,7 +18,11 @@ class SmartCampusMapApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const MapScreen(),
+      home: const HomeScreen(),  // ✅ CHANGED: Start with HomeScreen
+      routes: {
+        '/map': (context) => const MapScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }

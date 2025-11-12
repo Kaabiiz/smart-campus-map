@@ -2,88 +2,159 @@
 
 # 🗺️ Smart Campus Map
 
-### *Navigate your campus like never before!*
+### *Your Ultimate Campus Navigation Companion*
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.24.5-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.5.4-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/Kaabiiz/smart-campus-map?style=for-the-badge)](https://github.com/Kaabiiz/smart-campus-map/stargazers)
 
-**An intelligent Flutter application for campus navigation with indoor maps, real-time room occupancy, and seamless reservation system.**
+**A feature-rich Flutter application for intelligent campus navigation with interactive maps, real-time room availability, seamless reservations, and custom POI management.**
 
-[🚀 Getting Started](#-getting-started) • [✨ Features](#-features) • [� Screenshots](#-screenshots) • [🤝 Contributing](#-contributing)
+[🚀 Features](#-key-features) • [📱 Screenshots](#-app-showcase) • [⚡ Quick Start](#-quick-start) • [🛠️ Tech Stack](#-tech-stack)
 
 ---
+
+<img src="assets/banner.png" alt="Smart Campus Map Banner" width="800"/>
 
 </div>
 
-## 🌟 Why Smart Campus Map?
-
-Tired of getting lost on campus? Need to find an available study room? **Smart Campus Map** is your ultimate campus companion that combines:
-
-- 🗺️ **Interactive Navigation** - Explore your entire campus with an intuitive map interface
-- 🏢 **Indoor Floor Plans** - Never get lost inside buildings again
-- 📊 **Real-time Occupancy** - See which rooms are available at a glance
-- 📅 **Smart Reservations** - Book rooms instantly with just a few taps
-- 🔍 **Powerful Search** - Find any building, room, or facility in seconds
-
 ---
 
-## ✨ Features
+## ✨ Key Features
 
 <table>
 <tr>
-<td width="50%">
+<td width="33%" align="center">
 
-### 🗺️ Interactive Campus Map
-- 📍 Campus-wide navigation with smart markers
-- 🎨 Color-coded building types
-- 📊 Real-time occupancy indicators
-- 📌 Points of Interest (parking, ATMs, cafeterias)
-- 🔽 Filter buildings by category
+### 🗺️ **Interactive Map**
+Real-time campus navigation with color-coded buildings, custom POIs, and smart search
 
 </td>
-<td width="50%">
+<td width="33%" align="center">
 
-### 🏢 Building Intelligence
-- 📋 Detailed building information
-- 🏗️ Multi-floor navigation
-- 📈 Live capacity & occupancy stats
-- 🗺️ Interactive indoor floor plans
-- 🎯 Quick room locator
+### 📅 **Smart Reservations**
+Book rooms instantly with email confirmations and manage all your bookings
 
 </td>
-</tr>
-<tr>
-<td width="50%">
+<td width="33%" align="center">
 
-### 🚪 Smart Room Management
-- ⚡ Real-time occupancy tracking
-- 🚦 Visual status indicators (green/orange/red)
-- 🛋️ Room capacity & equipment details
-- ✅ Instant availability status
-- 📱 Equipment list (projectors, PCs, etc.)
-
-</td>
-<td width="50%">
-
-### 📅 Seamless Reservations
-- 📆 Date & time slot picker
-- ⏰ View all available time slots
-- ✉️ Instant confirmation system
-- 📝 Add purpose/notes to reservations
-- 🔔 Booking history (coming soon)
+### 📍 **Custom POIs**
+Add, edit, and manage 12 categories of points of interest across campus
 
 </td>
 </tr>
 </table>
 
-### 🔍 Advanced Search System
-- 🔎 Search buildings, rooms, AND POIs simultaneously
-- 🏷️ Smart filtering by type
-- ⚡ Real-time results as you type
-- 💡 Intelligent suggestions
-- 🎯 Direct navigation to results
+### 🎯 Complete Feature Set
+
+#### **🗺️ Map & Navigation**
+- ✅ **Interactive OpenStreetMap** with smooth zoom & pan
+- ✅ **6 Building Types** (Classroom, Lab, Library, Restaurant, Admin, Sports)
+- ✅ **Color-coded Markers** for instant recognition
+- ✅ **Building Selection** with detailed room lists
+- ✅ **POI Toggle** - Show/hide custom points of interest
+- ✅ **Real-time Updates** - Refresh POIs on demand
+
+#### **🏢 Building & Room Management**
+- ✅ **Multi-floor Support** - Navigate through building floors
+- ✅ **Real-time Occupancy** tracking with visual indicators:
+  - 🟢 **Low** (< 50%)
+  - 🟠 **Medium** (50-80%)
+  - 🔴 **High** (> 80%)
+  - ⚫ **Occupied** (Unavailable)
+- ✅ **Room Details** - Capacity, floor number, equipment
+- ✅ **Available Rooms List** - Searchable & filterable
+- ✅ **One-tap Reservation** from map or list
+
+#### **📅 Reservation System**
+- ✅ **Quick Booking** - Date, time slot, and purpose
+- ✅ **Email Confirmations** - Automatic confirmation messages
+- ✅ **My Reservations** - View upcoming and past bookings
+- ✅ **Cancel/Delete** - Manage your reservations with ease
+- ✅ **Status Tracking** - Pending, Confirmed, Completed, Cancelled
+- ✅ **Tabbed Interface** - Separate upcoming & past views
+
+#### **� POI Management (Full CRUD)**
+- ✅ **12 Categories**: Parking, Entrance, Exit, Toilet, ATM, Printer, WiFi, Cafeteria, Study Area, Sports, Emergency, Other
+- ✅ **Map Picker** - Tap map to set POI location
+- ✅ **Custom Icons & Colors** - 🅿️🚪🚻🏧🖨️📶🍕📚⚽🚨📍
+- ✅ **Search & Filter** - Find POIs quickly by name or category
+- ✅ **Edit & Delete** - Full management with confirmation dialogs
+- ✅ **Database Persistence** - All POIs saved locally
+
+#### **🔍 Advanced Search**
+- ✅ **Unified Search** - Find buildings, rooms, and POIs
+- ✅ **Real-time Results** - As you type
+- ✅ **Smart Filtering** - Filter by category, availability
+- ✅ **Direct Navigation** - Tap result to navigate
+- ✅ **Empty State Handling** - Helpful messages
+
+#### **� Beautiful UI/UX**
+- ✅ **Material Design 3** - Modern, clean interface
+- ✅ **Gradient Cards** - Eye-catching statistics
+- ✅ **Bottom Sheets** - Smooth info displays
+- ✅ **Tab Controllers** - Organized content
+- ✅ **Loading States** - Clear feedback
+- ✅ **Error Handling** - User-friendly messages
+- ✅ **Responsive Layout** - Works on all screen sizes
+
+---
+
+## 📱 App Showcase
+
+<div align="center">
+
+### 🏠 **Home & Navigation**
+
+<table>
+<tr>
+<td width="33%"><img src="screenshots/01_home_screen.png" alt="Home Screen"/><br/><b>Home Dashboard</b><br/>Real-time stats & quick access</td>
+<td width="33%"><img src="screenshots/02_map_view.png" alt="Map View"/><br/><b>Interactive Map</b><br/>Campus-wide navigation</td>
+<td width="33%"><img src="screenshots/03_building_detail.png" alt="Building Detail"/><br/><b>Building Details</b><br/>Room list & availability</td>
+</tr>
+</table>
+
+### 📅 **Reservations**
+
+<table>
+<tr>
+<td width="33%"><img src="screenshots/04_available_rooms.png" alt="Available Rooms"/><br/><b>Available Rooms</b><br/>Search & filter functionality</td>
+<td width="33%"><img src="screenshots/05_reservation_form.png" alt="Reservation Form"/><br/><b>Quick Booking</b><br/>Easy reservation process</td>
+<td width="33%"><img src="screenshots/06_my_reservations.png" alt="My Reservations"/><br/><b>My Bookings</b><br/>Upcoming & past reservations</td>
+</tr>
+</table>
+
+### 📍 **POI Management**
+
+<table>
+<tr>
+<td width="33%"><img src="screenshots/07_poi_list.png" alt="POI List"/><br/><b>POI List</b><br/>All points of interest</td>
+<td width="33%"><img src="screenshots/08_add_poi.png" alt="Add POI"/><br/><b>Add POI</b><br/>Map picker & categories</td>
+<td width="33%"><img src="screenshots/09_poi_on_map.png" alt="POI on Map"/><br/><b>POIs on Map</b><br/>Color-coded markers</td>
+</tr>
+</table>
+
+### 🔍 **Search & Features**
+
+<table>
+<tr>
+<td width="33%"><img src="screenshots/10_search.png" alt="Search"/><br/><b>Smart Search</b><br/>Buildings, rooms & POIs</td>
+<td width="33%"><img src="screenshots/11_filters.png" alt="Filters"/><br/><b>Filter Options</b><br/>Category-based filtering</td>
+<td width="33%"><img src="screenshots/12_room_detail.png" alt="Room Detail"/><br/><b>Room Details</b><br/>Occupancy & equipment</td>
+</tr>
+</table>
+
+### ✨ **Additional Features**
+
+<table>
+<tr>
+<td width="33%"><img src="screenshots/13_email_confirmation.png" alt="Email"/><br/><b>Email Confirmations</b><br/>Automatic booking emails</td>
+<td width="33%"><img src="screenshots/14_poi_details.png" alt="POI Details"/><br/><b>POI Details</b><br/>Bottom sheet info</td>
+<td width="33%"><img src="screenshots/15_statistics.png" alt="Statistics"/><br/><b>Statistics</b><br/>Real-time analytics</td>
+</tr>
+</table>
+
+</div>
 
 ---
 
@@ -91,205 +162,146 @@ Tired of getting lost on campus? Need to find an available study room? **Smart C
 
 <div align="center">
 
-| Category | Technology |
-|----------|-----------|
-| **Framework** | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white) Flutter 3.24.5 |
-| **Language** | ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white) Dart 3.5.4 |
-| **Maps** | ![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EBC6F?style=flat&logo=openstreetmap&logoColor=white) flutter_map + OSM |
-| **UI/UX** | ![Material Design](https://img.shields.io/badge/Material%20Design%203-757575?style=flat&logo=material-design&logoColor=white) Material Design 3 |
-| **State** | StatefulWidget (Provider/Riverpod ready) |
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white) | Framework | 3.24.5 |
+| ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white) | Language | 3.5.4 |
+| ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white) | Database | Latest |
+| ![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EBC6F?style=flat&logo=openstreetmap&logoColor=white) | Maps | OSM Tiles |
+| ![Material Design](https://img.shields.io/badge/Material%20Design-757575?style=flat&logo=material-design&logoColor=white) | UI/UX | MD3 |
 
 </div>
 
----
-
-## 📦 Dependencies
+### 📦 Core Dependencies
 
 ```yaml
 dependencies:
-  flutter:
-    sdk: flutter
   flutter_map: ^8.2.2      # Interactive maps
   latlong2: ^0.9.0         # Geographic coordinates
-  cupertino_icons: ^1.0.8  # iOS-style icons
+  sqflite: ^2.0.0          # Local database
+  path: ^1.8.0             # Path utilities
+  mailer: ^6.0.0           # Email service
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Quick Start
 
 ### 📋 Prerequisites
 
-Before you begin, ensure you have:
+```bash
+✅ Flutter SDK 3.0+
+✅ Dart SDK 3.0+
+✅ Android Studio / VS Code
+✅ Git
+```
 
-- ✅ [Flutter SDK](https://flutter.dev/docs/get-started/install) (3.0+)
-- ✅ [Dart SDK](https://dart.dev/get-dart) (3.0+)
-- ✅ [Android Studio](https://developer.android.com/studio) / [VS Code](https://code.visualstudio.com/)
-- ✅ [Git](https://git-scm.com/downloads)
-- ✅ An Android/iOS device or emulator
-
-### ⚡ Quick Start
+### 🚀 Installation
 
 ```bash
-# 1️⃣ Clone the repository
+# Clone repository
 git clone https://github.com/Kaabiiz/smart-campus-map.git
 
-# 2️⃣ Navigate to project directory
+# Navigate to directory
 cd smart-campus-map
 
-# 3️⃣ Install dependencies
+# Install dependencies
 flutter pub get
 
-# 4️⃣ Run the app
+# Run the app
 flutter run
 ```
 
-### 🎮 Development Commands
+### 🎮 Available Commands
 
 ```bash
-# Run in debug mode
-flutter run
-
-# Run in release mode
-flutter run --release
-
-# Run tests
-flutter test
-
-# Check for issues
-flutter doctor
-
-# Clean build files
-flutter clean
+flutter run              # Debug mode
+flutter run --release    # Release mode
+flutter test            # Run tests
+flutter clean           # Clean build
+flutter doctor          # Check setup
 ```
 
 ---
 
-## � Screenshots
-
-<div align="center">
-
-### Coming Soon! 🎨
-
-*Screenshots will be added after deployment*
-
-</div>
-
----
-
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
 smart_campus_map/
-│
-├── 📱 lib/
-│   ├── 📦 models/              # Data models
-│   │   ├── building.dart       # Building entity
-│   │   ├── room.dart           # Room entity
-│   │   ├── floor_plan.dart     # Floor plan data
-│   │   ├── poi.dart            # Point of Interest
-│   │   └── reservation.dart    # Reservation system
-│   │
-│   ├── 🎨 screens/             # UI Screens
-│   │   ├── map_screen.dart               # Main map view
-│   │   ├── building_detail_screen.dart   # Building info
-│   │   ├── floor_plan_screen.dart        # Indoor maps
-│   │   ├── room_reservation_screen.dart  # Booking system
-│   │   └── search_screen.dart            # Search interface
-│   │
-│   ├── ⚙️ services/            # Business Logic
-│   │   └── reservation_service.dart      # Reservation handler
-│   │
-│   ├── 🛠️ utils/               # Utilities
-│   │   ├── constants.dart      # App constants
-│   │   ├── mock_data.dart      # Sample data
-│   │   └── helpers.dart        # Helper functions
-│   │
-│   └── 🚀 main.dart            # App entry point
-│
-├── 🎨 assets/                  # Assets (images, icons)
-├── 🤖 android/                 # Android specific files
-├── 🍎 ios/                     # iOS specific files
-├── � web/                     # Web specific files
-├── 📝 pubspec.yaml             # Project dependencies
-└── 📖 README.md                # You are here!
+├── lib/
+│   ├── models/              # Data models
+│   │   ├── building.dart
+│   │   ├── room.dart
+│   │   ├── poi.dart
+│   │   └── reservation.dart
+│   ├── screens/             # UI screens
+│   │   ├── home_screen.dart
+│   │   ├── map_screen.dart
+│   │   ├── my_reservations_screen.dart
+│   │   ├── available_rooms_screen.dart
+│   │   ├── room_reservation_screen.dart
+│   │   └── poi_list_screen.dart
+│   ├── services/            # Business logic
+│   │   ├── database_helper.dart
+│   │   ├── reservation_service.dart
+│   │   ├── poi_service.dart
+│   │   └── email_service.dart
+│   ├── widgets/             # Reusable widgets
+│   │   ├── stat_card_widget.dart
+│   │   ├── reservation_card_widget.dart
+│   │   └── home_banner_widget.dart
+│   ├── utils/               # Utilities
+│   │   └── mock_data.dart
+│   └── main.dart            # Entry point
+├── assets/                  # Images & icons
+├── screenshots/             # App screenshots
+└── pubspec.yaml            # Dependencies
 ```
 
 ---
 
-## 🎯 Roadmap
+## 🎯 Key Highlights
 
-### ✅ Completed Features (v1.0)
+<div align="center">
 
-- [x] 🗺️ Interactive campus map with markers
-- [x] 🏢 Building detail screens with stats
-- [x] 🏗️ Multi-floor support
-- [x] 🎨 Indoor floor plans with visualization
-- [x] 📅 Complete reservation system
-- [x] 🔍 Enhanced search (buildings, rooms, POIs)
-- [x] 📊 Real-time occupancy tracking
-- [x] 🎨 Material Design 3 UI
+| Feature | Description |
+|---------|-------------|
+| **🗺️ Real-time Map** | OpenStreetMap integration with custom markers |
+| **📊 Live Occupancy** | Color-coded room availability (Green/Orange/Red) |
+| **� 12 POI Categories** | Parking, Toilets, ATMs, WiFi, Cafeterias, etc. |
+| **� Smart Booking** | Date picker, time slots, instant confirmations |
+| **� Email System** | Automatic confirmation emails with templates |
+| **� SQLite Database** | Local persistence for POIs & reservations |
+| **� Unified Search** | Find buildings, rooms, and POIs instantly |
+| **� Material Design 3** | Modern, beautiful, and responsive UI |
 
-
-### 🔮 Future Ideas (v3.0+)
-
-- [ ] � AI-powered room recommendations
-- [ ] 📊 Analytics dashboard
-- [ ] 👥 Social features (find friends)
-- [ ] 🎫 Event management
-- [ ] 🚗 Parking availability
-- [ ] 🍽️ Cafeteria menu integration
-- [ ] 📚 Library seat booking
-- [ ] 🏃 Fitness tracking
+</div>
 
 ---
 
 ## 🤝 Contributing
 
-We love contributions! 💙
+Contributions are welcome! Feel free to:
 
-### How to Contribute
-
-1. 🍴 **Fork** the repository
-2. 🔨 **Create** your feature branch
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. ✨ **Commit** your changes
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. 📤 **Push** to the branch
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. 🎉 **Open** a Pull Request
-
-### 📝 Contribution Guidelines
-
-- Write clear commit messages
-- Follow the existing code style
-- Add comments for complex logic
-- Update documentation if needed
-- Test your changes thoroughly
+1. 🍴 Fork the repository
+2. 🔨 Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. ✨ Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. 📤 Push to branch (`git push origin feature/AmazingFeature`)
+5. 🎉 Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License - Feel free to use this project for learning or commercial purposes!
-```
+This project is licensed under the **MIT License** - see [LICENSE](LICENSE) for details.
 
 ---
 
-## �‍💻 Author
+## 👨‍💻 Author
 
 <div align="center">
 
-### **Ahmed Kaabi** 
+**Ahmed Kaabi**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Kaabiiz-181717?style=for-the-badge&logo=github)](https://github.com/Kaabiiz)
 [![Email](https://img.shields.io/badge/Email-kaabi.ahmed@outlook.com-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:kaabi.ahmed@outlook.com)
@@ -302,47 +314,30 @@ MIT License - Feel free to use this project for learning or commercial purposes!
 
 ## 🙏 Acknowledgments
 
-A big thank you to:
-
-- 🗺️ **[OpenStreetMap](https://www.openstreetmap.org/)** - For providing free map tiles
-- 💙 **[Flutter Team](https://flutter.dev/)** - For the amazing framework
-- 📦 **[flutter_map](https://pub.dev/packages/flutter_map)** - For the excellent map package
-- 🎨 **Material Design** - For the beautiful UI components
-- ☕ **Coffee** - For keeping me awake during development
-
----
-
-## 📞 Support
-
-Need help? Have questions?
-
-- 📧 **Email:** [kaabi.ahmed@outlook.com](mailto:kaabi.ahmed@outlook.com)
-- 🐛 **Issues:** [Create an issue](https://github.com/Kaabiiz/smart-campus-map/issues)
-- 💬 **Discussions:** [Start a discussion](https://github.com/Kaabiiz/smart-campus-map/discussions)
+- 🗺️ [OpenStreetMap](https://www.openstreetmap.org/) - Free map tiles
+- 💙 [Flutter Team](https://flutter.dev/) - Amazing framework
+- 📦 [flutter_map](https://pub.dev/packages/flutter_map) - Map package
+- ☕ Coffee - For keeping me awake!
 
 ---
 
 ## ⭐ Show Your Support
 
-If you like this project, please consider:
+If you found this project helpful:
 
-- ⭐ **Starring** the repository
-- 🍴 **Forking** to contribute
-- 📢 **Sharing** with others
-- 💬 **Providing feedback**
+- ⭐ Star the repository
+- 🍴 Fork and contribute
+- 📢 Share with others
+- 💬 Provide feedback
 
 ---
 
 <div align="center">
 
-### 🚀 Ready to Navigate?
+### 🚀 Ready to Navigate Your Campus?
 
-**[Get Started Now](#-getting-started)** | **[View Demo](#-screenshots)** | **[Contribute](#-contributing)**
+**Made with ❤️ using Flutter**
 
----
-
-Made with ❤️ and Flutter
-
-**[⬆ Back to Top](#-smart-campus-map)**
+[⬆ Back to Top](#-smart-campus-map)
 
 </div>
